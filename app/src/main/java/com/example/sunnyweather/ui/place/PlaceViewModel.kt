@@ -7,6 +7,11 @@ import com.example.sunnyweather.logic.Repository
 import com.example.sunnyweather.logic.model.Place
 
 class PlaceViewModel :ViewModel(){
+
+    fun savePlace(place: Place) = Repository.savePlace(place)
+    fun getSaved() = Repository.getSavedPlace()
+    fun isPlacedSaved() = Repository.isPlaceSaved()
+
     private val searchLiveData = MutableLiveData<String>()
     val placeList = ArrayList<Place>()
     val placeLiveData = Transformations.switchMap(searchLiveData){
