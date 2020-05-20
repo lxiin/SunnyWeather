@@ -32,19 +32,17 @@ class PlaceFragment : Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        if (activity is MainActivity && viewModel.isPlacedSaved()){
+        if (activity is MainActivity && viewModel.isPlacedSaved()) {
             val place = viewModel.getSaved()
-            val intent = Intent(requireContext(), WeaterActivity::class.java).apply {
-                putExtra("location_lng",place.location.lng)
-                putExtra("location_lat",place.location.lat)
-                putExtra("place_name",place.name)
+            val intent = Intent(context, WeaterActivity::class.java).apply {
+                putExtra("location_lng", place.location.lng)
+                putExtra("location_lat", place.location.lat)
+                putExtra("place_name", place.name)
             }
-            viewModel.savePlace(place)
             startActivity(intent)
             activity?.finish()
+            return
         }
-
         val layoutManager =  LinearLayoutManager(activity)
         adapter = PlaceAdapter(this,viewModel.placeList)
         recyclerView.layoutManager = layoutManager

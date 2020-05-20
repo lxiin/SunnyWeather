@@ -16,10 +16,21 @@ android {
     }
     buildTypes {
         release {
+//            signingConfig signingConfigs.config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+//    signingConfigs {
+//        config {
+//            storeFile file('G:\\lxkey\\lxnewtest.jks')
+//            keyAlias "lixin"
+//            keyPassword "123qweqwe"
+//            storePassword "123qweqwe"
+//        }
+//
+//    }
 
     compileOptions {
         sourceCompatibility = 1.8
