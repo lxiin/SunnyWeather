@@ -4,6 +4,11 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def _storeFile = rootProject.file("keyconfig/lxtest.keystore")
+final def storeProp = new Properties()
+storeProp.load(new File(_storeFile.getAbsolutePath() + ".properties").newReader("utf-8"))
+
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -22,15 +27,15 @@ android {
         }
     }
 
-//    signingConfigs {
-//        config {
-//            storeFile file('G:\\lxkey\\lxnewtest.jks')
-//            keyAlias "lixin"
-//            keyPassword "123qweqwe"
-//            storePassword "123qweqwe"
-//        }
-//
-//    }
+    signingConfigs {
+        config {
+            storeFile _storeFile
+            keyAlias  storeProp.getProperty("keyAlias")
+            keyPassword storeProp.getProperty("keyPassword")
+            storePassword storeProp.getProperty("storePassword")
+        }
+
+    }
 
     compileOptions {
         sourceCompatibility = 1.8
